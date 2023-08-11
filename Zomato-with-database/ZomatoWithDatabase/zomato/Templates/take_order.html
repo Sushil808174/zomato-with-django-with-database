@@ -1,0 +1,33 @@
+{% load static %}
+<!-- take_order.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Take Order</title>
+    <link rel="stylesheet" href="{% static 'take_order.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>Take Order</h1>
+    </header>
+    <div class="order-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.cus_name.id_for_label }}">Customer Name:</label>
+                {{ form.cus_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.selected_items.id_for_label }}">Select Items:</label>
+                {{ form.selected_items }}
+            </div>
+            <p class="total-price">Total Price: ${{ form.cleaned_data.total_price }}</p>
+            <button type="submit" class="submit-button">Submit Order</button>
+        </form>
+        <a href="{% url 'menu_list' %}" class="back-button">Back to Menu List</a>
+    </div>
+</body>
+
+</html>

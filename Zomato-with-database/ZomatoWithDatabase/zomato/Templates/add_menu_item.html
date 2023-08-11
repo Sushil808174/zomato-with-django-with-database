@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Menu Item</title>
+    <link rel="stylesheet" href="{% static 'add_menu_item.css' %}">
+</head>
+<body>
+    <h1>Add Menu Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.dish_name.id_for_label }}">Dish Name</label>
+        {{ form.dish_name }}
+        <label for="{{ form.price.id_for_label }}">Price</label>
+        {{ form.price }}
+        <label for="{{ form.availability.id_for_label }}">Availability</label>
+        {{ form.availability }}
+        <button type="submit">Add Item</button>
+    </form>
+    <a href="{% url 'menu_list' %}">Back to Menu List</a>
+</body>
+</html>

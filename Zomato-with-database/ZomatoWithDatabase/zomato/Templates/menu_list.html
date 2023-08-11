@@ -1,0 +1,34 @@
+{% load static %}
+<!-- menu_list.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Menu Items</title>
+    <link rel="stylesheet" href="{% static 'menuUi.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>Zomato Menu</h1>
+    </header>
+    <div class="menu-container">
+        {% for item in menu_items %}
+        <div class="menu-item">
+            <h2>{{ item.dish_name }}</h2>
+            <p class="price">Price: ${{ item.price }}</p>
+            <p class="availability{% if not item.availability %} unavailable{% endif %}">
+                {% if item.availability %}Available{% else %}Not Available{% endif %}
+            </p>
+            <!-- <form method="post" action="{% url 'update_item' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="availability-button">Update</button>
+            </form> -->
+            <a href="{% url 'update_item' item.id %}" class="availability-button">Update</a>
+            <a href="{% url 'delete_item' item.id %}" class="delete-button">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
